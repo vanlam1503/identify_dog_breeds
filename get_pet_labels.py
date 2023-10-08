@@ -52,5 +52,5 @@ def get_pet_labels(image_dir):
                     name_label += word.lower() + " "
             name_label = name_label.strip()
             if file_name not in result_dict:
-                result_dict[file_name] = name_label
+                result_dict[file_name] = [name_label]
     return result_dict

@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 # */AIPND-revision/intropyproject-classify-pet-images/classify_images.py
 #                                                                             
-# PROGRAMMER: 
-# DATE CREATED:                                 
+# PROGRAMMER: LAMLV5
+# DATE CREATED: 09/10/2023                          
 # REVISED DATE: 
 # PURPOSE: Create a function classify_images that uses the classifier function 
 #          to create the classifier labels and then compares the classifier 
@@ -22,6 +22,7 @@
 ##
 # Imports classifier function for using CNN to classify images 
 from classifier import classifier 
+from os import listdir
 
 # TODO 3: Define classify_images function below, specifically replace the None
 #       below by the function definition of the classify_images function. 
@@ -65,4 +66,13 @@ def classify_images(images_dir, results_dic, model):
      Returns:
            None - results_dic is mutable data type so no return needed.         
     """
-    None 
+    for key in results_dic:
+        # Creates classifier labels with classifier function
+        model_label = classifier(images_dir+key, model)
+        # trmmed and lower
+        model_label = model_label.strip().lower()
+        truth = results_dic[key][0]
+        if truth in model_label:
+          results_dic[key].extend((model_label, 1))
+        else:
+          results_dic[key].extend((model_label, 0))
