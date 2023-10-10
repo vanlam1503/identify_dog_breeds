@@ -59,7 +59,4 @@ def get_input_args():
     
     ## Assigns variable in_args to parse_args()
     in_args = parser.parse_args()
-
-    ## Accesses values of Argument 1 by printing it
-    print("Argument 1:", in_args.dir)
     return in_args

@@ -70,4 +70,15 @@ def calculates_results_stats(results_dic):
     """        
     # Replace None with the results_stats_dic dictionary that you created with 
     # this function 
+    results_stats_dic = dict()
+    results_stats_dic["n_dog_image"] = 0
+    results_stats_dic["n_match"] = 0
+    results_stats_dic["n_correct_dogs"] = 0
+    results_stats_dic["n_not_correct_dogs"] = 0
+    results_stats_dic["n_correct_breed"] = 0
+
+    for resut, value in results_dic.items():
+        if value[2] == 1:
+            results_stats_dic["n_match"] += 1
+        print(value)
     return None
