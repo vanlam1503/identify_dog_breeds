@@ -70,6 +70,8 @@ def calculates_results_stats(results_dic):
     """        
     # Replace None with the results_stats_dic dictionary that you created with 
     # this function 
+    if len(results_dic) == 0:
+        return None
     results_stats_dic = dict()
     results_stats_dic["n_dogs_img"] = 0
     results_stats_dic["n_match"] = 0
@@ -98,11 +100,20 @@ def calculates_results_stats(results_dic):
     #calculates number of not-a-dog-images using images&dogs images count
     results_stats_dic['n_notdogs_img'] = results_stats_dic["n_images"] - results_stats_dic["n_dogs_img"]
     #calculates percent correct for matches
-    results_stats_dic['pct_match'] = (results_stats_dic['n_match'] / results_stats_dic['n_images'])*100.0
+    try:
+        results_stats_dic['pct_match'] = (results_stats_dic['n_match'] / results_stats_dic['n_images'])*100.0
+    except:
+        results_stats_dic['pct_match'] = 0
     #calculates percent correct dogs
-    results_stats_dic['pct_correct_dogs'] = (results_stats_dic['n_correct_dogs'] / results_stats_dic['n_dogs_img'])*100.0
+    try:
+        results_stats_dic['pct_correct_dogs'] = (results_stats_dic['n_correct_dogs'] / results_stats_dic['n_dogs_img'])*100.0
+    except:
+        results_stats_dic['pct_correct_dogs'] = 0
     # Calculates % correct breed of dog
-    results_stats_dic['pct_correct_breed'] = (results_stats_dic['n_correct_breed'] / results_stats_dic['n_dogs_img'])*100.0
+    try:
+        results_stats_dic['pct_correct_breed'] = (results_stats_dic['n_correct_breed'] / results_stats_dic['n_dogs_img'])*100.0
+    except:
+        results_stats_dic['pct_correct_breed'] = 0
     # Calculates % correct not-a-dog images
     # Uses conditional statement for when no 'not a dog' images were submitted 
     if results_stats_dic['n_notdogs_img'] > 0:
